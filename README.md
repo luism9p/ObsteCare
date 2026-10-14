@@ -141,6 +141,19 @@ src/main/webapp/
 | **JDBC** | `dao/ConexionBD.java`, `dao/PacienteDAO.java` |
 | **Arquitectura Java EE** | Modelo (`model/`) → DAO (`dao/`) → Servlet (`servlet/`) → Vista JSP (`webapp/`), con `filter/AuthFilter` para sesión |
 
+## Últimos cambios
+
+Si ya tenías una versión anterior del proyecto, esto es lo nuevo (no hay que tocar la base de datos):
+
+- **Nuevo servlet** `DetallePacienteServlet` (`/paciente-detalle?id=...`) y su vista `pacientes/detalle.jsp`.
+- **Nuevos fragmentos JSP** `WEB-INF/jspf/header.jsp` y `footer.jsp`, incluidos con `<jsp:include>` en `dashboard.jsp`, `pacientes/lista.jsp`, `pacientes/form.jsp` y `pacientes/detalle.jsp`.
+- **Más JSTL**: `c:choose`, `c:out`, `c:url/c:param`, `fn:length`.
+- La lista de pacientes tiene un enlace **Ver** y un contador de total.
+- `AuthFilter` ahora también protege `/paciente-detalle`.
+- No se agregaron dependencias ni frameworks nuevos: sigue siendo JSP + Servlets + JSTL + JDBC puro.
+
+Para actualizar tu copia: `git pull`, vuelve a compilar (`mvn clean package`) y redespliega.
+
 ## Solución de problemas comunes
 
 | Problema | Solución |
