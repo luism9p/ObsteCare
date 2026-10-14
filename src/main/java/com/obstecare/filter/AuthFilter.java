@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter({"/dashboard", "/pacientes", "/pacientes/*"})
+@WebFilter({"/dashboard", "/pacientes", "/pacientes/*", "/paciente-detalle"})
 public class AuthFilter implements Filter {
 
     @Override

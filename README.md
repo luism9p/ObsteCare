@@ -130,6 +130,17 @@ src/main/webapp/
   WEB-INF/web.xml
 ```
 
+## Dónde está cada tema del curso (para la exposición)
+
+| Tema | Dónde verlo |
+|---|---|
+| **Servlets y parámetros** | `servlet/LoginServlet` (POST con usuario/contraseña), `servlet/PacienteServlet` (`?accion=...&id=...`), `servlet/DetallePacienteServlet` (`?id=...`, el más simple para explicar) |
+| **JSP** | Todas las vistas en `src/main/webapp/` |
+| **JSTL** | `c:forEach`, `c:if`, `c:choose/c:when`, `c:out`, `c:url/c:param` (core); `fmt:formatDate` (formato); `fn:length` (funciones) — ver `pacientes/lista.jsp`, `pacientes/detalle.jsp`, `dashboard.jsp` |
+| **Reutilización en JSP** | `WEB-INF/jspf/header.jsp` y `footer.jsp`, incluidos con `<jsp:include page="..."/>` en las páginas privadas |
+| **JDBC** | `dao/ConexionBD.java`, `dao/PacienteDAO.java` |
+| **Arquitectura Java EE** | Modelo (`model/`) → DAO (`dao/`) → Servlet (`servlet/`) → Vista JSP (`webapp/`), con `filter/AuthFilter` para sesión |
+
 ## Solución de problemas comunes
 
 | Problema | Solución |

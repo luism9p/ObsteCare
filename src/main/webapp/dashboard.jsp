@@ -9,19 +9,19 @@
 </head>
 <body>
 
-<header class="topbar">
-    <div class="logo">ObsteCare</div>
-    <nav>
-        <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-        <a href="${pageContext.request.contextPath}/pacientes">Pacientes</a>
-        <a href="${pageContext.request.contextPath}/logout">Cerrar sesion (${sessionScope.usuario.nombreCompleto})</a>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/jspf/header.jsp"/>
 
 <div class="contenedor-app">
     <div class="dashboard-header">
-        <h1>Bienvenido(a), ${sessionScope.usuario.nombreCompleto}</h1>
-        <p>${fechaActual} &middot; Rol: ${sessionScope.usuario.rol}</p>
+        <h1>Bienvenido(a), <c:out value="${sessionScope.usuario.nombreCompleto}"/></h1>
+        <p>
+            ${fechaActual} &middot; Rol:
+            <c:choose>
+                <c:when test="${sessionScope.usuario.rol == 'ADMINISTRADOR'}">Administrador</c:when>
+                <c:when test="${sessionScope.usuario.rol == 'OBSTETRA'}">Obstetra</c:when>
+                <c:otherwise>Recepcionista</c:otherwise>
+            </c:choose>
+        </p>
     </div>
 
     <c:if test="${not empty error}">
@@ -52,9 +52,7 @@
     </div>
 </div>
 
-<footer>
-    ObsteCare &mdash; Sistema Web de Gestion para Consultorio Obstetrico
-</footer>
+<jsp:include page="/WEB-INF/jspf/footer.jsp"/>
 
 </body>
 </html>

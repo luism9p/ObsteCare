@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -10,14 +11,7 @@
 </head>
 <body>
 
-<header class="topbar">
-    <div class="logo">ObsteCare</div>
-    <nav>
-        <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-        <a href="${pageContext.request.contextPath}/pacientes">Pacientes</a>
-        <a href="${pageContext.request.contextPath}/logout">Cerrar sesion (${sessionScope.usuario.nombreCompleto})</a>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/jspf/header.jsp"/>
 
 <div class="contenedor-app">
 
@@ -31,6 +25,10 @@
         <input type="text" name="q" placeholder="Buscar por nombre, apellido o DNI" value="${terminoBusqueda}">
         <button type="submit" class="btn btn-secundario">Buscar</button>
     </form>
+
+    <p style="margin-bottom:8px; color:#666; font-size:13px;">
+        Total: ${fn:length(pacientes)} paciente(s)
+    </p>
 
     <table class="tabla-datos">
         <thead>
@@ -47,13 +45,14 @@
         <tbody>
         <c:forEach var="p" items="${pacientes}">
             <tr>
-                <td>${p.dni}</td>
-                <td>${p.nombres}</td>
-                <td>${p.apellidos}</td>
-                <td>${p.telefono}</td>
+                <td><c:out value="${p.dni}"/></td>
+                <td><c:out value="${p.nombres}"/></td>
+                <td><c:out value="${p.apellidos}"/></td>
+                <td><c:out value="${p.telefono}"/></td>
                 <td><fmt:formatDate value="${p.fechaNacimiento}" pattern="dd/MM/yyyy"/></td>
                 <td><fmt:formatDate value="${p.fechaRegistro}" pattern="dd/MM/yyyy HH:mm"/></td>
                 <td class="acciones-tabla">
+                    <a href="<c:url value='/paciente-detalle'><c:param name='id' value='${p.idPaciente}'/></c:url>">Ver</a>
                     <a href="${pageContext.request.contextPath}/pacientes?accion=editar&id=${p.idPaciente}">Editar</a>
                     <a href="${pageContext.request.contextPath}/pacientes?accion=eliminar&id=${p.idPaciente}"
                        onclick="return confirm('¿Eliminar a ${p.nombres} ${p.apellidos}?');">Eliminar</a>

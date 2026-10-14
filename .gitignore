@@ -11,6 +11,9 @@ target/
 nbproject/
 nb-configuration.xml
 
+# Zips descargados
+*.zip
+
 # OS
 .DS_Store
 Thumbs.db

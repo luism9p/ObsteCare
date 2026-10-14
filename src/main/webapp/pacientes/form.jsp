@@ -10,14 +10,7 @@
 </head>
 <body>
 
-<header class="topbar">
-    <div class="logo">ObsteCare</div>
-    <nav>
-        <a href="${pageContext.request.contextPath}/dashboard">Dashboard</a>
-        <a href="${pageContext.request.contextPath}/pacientes">Pacientes</a>
-        <a href="${pageContext.request.contextPath}/logout">Cerrar sesion (${sessionScope.usuario.nombreCompleto})</a>
-    </nav>
-</header>
+<jsp:include page="/WEB-INF/jspf/header.jsp"/>
 
 <div class="contenedor-app">
     <div class="barra-superior-modulo">
